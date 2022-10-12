@@ -41,21 +41,6 @@ class CustomUserAdmin(CustomUserHistoryAdmin):
     search_fields = ('email',)
     ordering = ('email',)
 
-    def save_model(self, request, obj, form, change):
-        """
-        Fazendo o override para tratar da criação de senha.
-        :param request:
-        :param obj:
-        :param form:
-        :param change:
-        :return:
-        """
-        if obj.password is None:
-            senha_nova = functions.gerador_pwd(8)
-            obj.set_password(senha_nova)
-            obj.observacoes_guser = f'{obj.observacoes_guser}\n\n ---\n Nova Senha: {senha_nova}'
-
-        super().save_model(request, obj, form, change)
 
 
 admin.site.register(GarbanzoUser, CustomUserAdmin)
