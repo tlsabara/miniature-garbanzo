@@ -9,9 +9,9 @@ from miniature_garbanzo.utils import functions
 
 
 class CustomUserHistoryAdmin(SimpleHistoryAdmin):
-    list_display = ("id", "nome_completo_guser", "status", 'user__username')
+    list_display = ("id", "status", 'user__username')
     history_readonly_fields = ('id', 'email')
-    history_list_display = ("nome_completo_guser", '')
+    history_list_display = ("nome_completo_guser",)
 
 
 class CustomUserAdmin(CustomUserHistoryAdmin):
@@ -35,7 +35,7 @@ class CustomUserAdmin(CustomUserHistoryAdmin):
     add_fieldsets = (
         (None, {
             'classes': ('wide',),
-            'fields': ('email', 'password1', 'password2', 'is_staff', 'is_active')}
+            'fields': ('email', 'password1', 'password2', 'is_staff', 'is_active', 'observacoes_guser')}
          ),
     )
     search_fields = ('email',)

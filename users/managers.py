@@ -8,12 +8,10 @@ class CustomUserManager(BaseUserManager):
     """
     Gerenciador para utilizar o email como login
     """
-    def create_user(self, email, password, cpf_guser, nome_completo_user, **extra_fields):
+    def create_user(self, email, password, cpf_guser, nome_completo_guser, **extra_fields):
         """
         Cria e salva o User com os dados informados
         """
-        print(2)
-
         if not email:
             raise ValueError(_('O email deve ser configurado.'))
 
@@ -23,12 +21,21 @@ class CustomUserManager(BaseUserManager):
             obs = f'{obs}\n\n ---\n Nova Senha: {senha_nova}'
             extra_fields['observacoes_guser'] = obs
 
+
+
         email = self.normalize_email(email)
-        user = self.model(email=email, **extra_fields)
+        user = self.model(email=email,
+                          cpf_guser=cpf_guser,
+                          nome_completo_guser=nome_completo_guser,
+                          **extra_fields)
 
         user.set_password(password)
-        user.cpf_guser = cpf_guser
-        user.nome_completo_user = nome_completo_user
+
+        if not extra_fields.get('_change_reason'):
+            user._change_reason = 'criação de user'
+        else:
+            user._change_reason = extra_fields.get('_change_reason')
+
         user.save()
 
         return user
@@ -41,7 +48,7 @@ class CustomUserManager(BaseUserManager):
         extra_fields.setdefault('is_superuser', True)
         extra_fields.setdefault('is_active', True)
         nome_completo_guser = 'Garbanzo Admin'
-        cpf_guser = '1111111111'
+        cpf_guser = '11122233344'
 
         if extra_fields.get('is_staff') is not True:
             raise ValueError(_('Superuser deve fazer parte do staff.'))

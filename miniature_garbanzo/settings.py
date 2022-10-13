@@ -132,3 +132,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Configurando a alteração do Model Customizado
 AUTH_USER_MODEL = 'users.GarbanzoUser'
+
+# Alterações dp simple_history
+SIMPLE_HISTORY_HISTORY_CHANGE_REASON_USE_TEXT_FIELD=True

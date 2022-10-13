@@ -11,11 +11,10 @@ from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
 from django.db import models
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
-from simple_history.models import HistoricalRecords
 
 from miniature_garbanzo.utils import functions
 # project imports
-from miniature_garbanzo.utils.abcmodels import UUIDModel
+from miniature_garbanzo.utils.abcmodels import GarbanzoModel
 from miniature_garbanzo.utils.validators import validacao_apenas_numeros, validacao_onze_digitos
 
 # local
@@ -24,17 +23,12 @@ from .utils import AppUserChoices
 from .validators import validador_cpf
 
 
-class GarbanzoUser(UUIDModel, AbstractBaseUser, PermissionsMixin):
-    # Campos sistema
-    system_create_at = models.DateTimeField(auto_now_add=True)
-    system_edited_at = models.DateTimeField(auto_now=True)
-    system_history = HistoricalRecords()
-
+class GarbanzoUser(GarbanzoModel, AbstractBaseUser, PermissionsMixin):
     # Campos obrigatórios
     email = models.EmailField(_('email address'), unique=True)
     is_staff = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
-
+    # Campos não obrigatórios
     nome_completo_guser = models.CharField(max_length=255)
     dt_nasc_guser = models.DateField(blank=True, null=True)
     cpf_guser = models.CharField(max_length=11, validators=[validador_cpf])
@@ -51,6 +45,12 @@ class GarbanzoUser(UUIDModel, AbstractBaseUser, PermissionsMixin):
         return self.email
 
     def save(self, *args, **kwargs):
+        """
+        Estou fazendo este override para grantir que o user será criado com uma senha randomica.
+        :param args:
+        :param kwargs:
+        :return:
+        """
         if self.password is None:
             senha_nova = functions.gerador_pwd(8)
             self.set_password(senha_nova)
