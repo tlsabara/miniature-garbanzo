@@ -42,5 +42,4 @@ class CustomUserAdmin(CustomUserHistoryAdmin):
     ordering = ('email',)
 
 
-
 admin.site.register(GarbanzoUser, CustomUserAdmin)

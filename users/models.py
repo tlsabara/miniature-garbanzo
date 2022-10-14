@@ -9,13 +9,11 @@ Neste modulo vou testar implementações
 from django.contrib.auth import password_validation
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
 from django.db import models
-from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 
 from miniature_garbanzo.utils import functions
 # project imports
 from miniature_garbanzo.utils.abcmodels import GarbanzoModel
-from miniature_garbanzo.utils.validators import validacao_apenas_numeros, validacao_onze_digitos
 
 # local
 from .managers import CustomUserManager
