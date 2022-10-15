@@ -8,6 +8,7 @@ class CustomUserManager(BaseUserManager):
     """
     Gerenciador para utilizar o email como login
     """
+
     def create_user(self, email, password, cpf_guser, nome_completo_guser, **extra_fields):
         """
         Cria e salva o User com os dados informados
@@ -20,8 +21,6 @@ class CustomUserManager(BaseUserManager):
             obs = extra_fields.get('observacoes_guser')
             obs = f'{obs}\n\n ---\n Nova Senha: {senha_nova}'
             extra_fields['observacoes_guser'] = obs
-
-
 
         email = self.normalize_email(email)
         user = self.model(email=email,
@@ -56,4 +55,3 @@ class CustomUserManager(BaseUserManager):
             raise ValueError(_('Superuser deve ter permissão de Superuser.'))
 
         return self.create_user(email, password, cpf_guser, nome_completo_guser, **extra_fields)
-
