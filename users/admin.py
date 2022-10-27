@@ -57,7 +57,7 @@ class CustomGarbanzoPermsAdmin(SimpleHistoryAdmin):
 
 
 class CustomGarbanzoAssetAdmin(SimpleHistoryAdmin):
-    history_readonly_fields = ('id', 'name_item')
+    history_readonly_fields = ('id', 'name_item', 'serial_number', 'tag_number', 'internal_number', 'type_asset')
 
 
 admin.site.register(GarbanzoPerms, CustomGarbanzoPermsAdmin)

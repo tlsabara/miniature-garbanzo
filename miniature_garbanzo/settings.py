@@ -44,6 +44,8 @@ INSTALLED_APPS = [
 
     # local apps
     'users.apps.UsersConfig',
+    'core.apps.CoreConfig',
+    'assets.apps.AssetsConfig'
 ]
 
 MIDDLEWARE = [
@@ -135,5 +137,6 @@ AUTH_USER_MODEL = 'users.GarbanzoUser'
 
 # Alterações dp simple_history
 SIMPLE_HISTORY_HISTORY_CHANGE_REASON_USE_TEXT_FIELD = True
-SIMPLE_HISTORY_EDIT = False
+SIMPLE_HISTORY_EDIT = True
+REVERT_HISTORY_READONLY = True
 

@@ -1,1 +1,1 @@
-from .dmp_functions import gerador_pwd
+from .commons import gerador_pwd
