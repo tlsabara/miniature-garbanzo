@@ -1,17 +1,12 @@
 """
 App Users
-Neste modulo vou testar implementações
-
-1 - Model de User customizado
-2 - Utilização de UUID
-3 - Utilização do HistoricalRecords()
 """
 from django.contrib.auth import password_validation
 from django.contrib.auth.models import AbstractBaseUser
 from django.db import models
 from django.utils.translation import gettext_lazy as _
-from simple_history.models import HistoricalRecords
 
+from core.models import GarbanzoPerms
 from miniature_garbanzo.utils import functions
 # project imports
 from miniature_garbanzo.utils.abcmodels import GarbanzoModel, CustomPermissionMixin
@@ -20,8 +15,6 @@ from miniature_garbanzo.utils.abcmodels import GarbanzoModel, CustomPermissionMi
 from .managers import CustomUserManager
 from .utils import AppUserChoices
 from .validators import validador_cpf
-
-
 
 
 class GarbanzoUser(GarbanzoModel, AbstractBaseUser, CustomPermissionMixin):
@@ -64,14 +57,6 @@ class GarbanzoUser(GarbanzoModel, AbstractBaseUser, CustomPermissionMixin):
             self._password = None
 
 
-class GarbanzoPerms(GarbanzoModel):
-    desc_gperms = models.CharField(max_length=100)
-    sys_name_gperms = models.CharField(max_length=100)
-    long_desc_gperms = models.TextField(max_length=1000, null=True, blank=True)
-
-    def __str__(self):
-        return self.sys_name_gperms
-
 
 class GUserPerms(GarbanzoModel):
     id_gperms = models.ForeignKey(GarbanzoPerms, on_delete=models.CASCADE)
@@ -86,38 +71,23 @@ class GUserPerms(GarbanzoModel):
         return f'Permissao: {self.id_gperms} -> User: {self.id_guser}'
 
 
-class GarbanzoLinkType(GarbanzoModel):
-    desc_garbazno_link = models.CharField(max_length=100)
+class Employee(GarbanzoModel):
+    linked_user = models.OneToOneField(GarbanzoUser, on_delete=models.DO_NOTHING, editable=False)
 
-    def __str__(self):
-        return self.desc_garbazno_link
+    matricula_employee = models.CharField(max_length=10)
+    rg_employee = models.CharField(max_length=10)
+    cpf_employee = models.CharField(max_length=10)
+    full_name = models.CharField(max_length=10)
+    dt_nasc = models.CharField(max_length=10)
+    cargo = models.CharField(max_length=10)
+    equipe = models.CharField(max_length=10)
+    setor = models.CharField(max_length=10)
+    gerente = models.CharField(max_length=10)
+    dt_admissao = models.CharField(max_length=10)
+    tipo_contrato = models.CharField(max_length=10)
+    satus_contrato = models.CharField(max_length=10)
+    empresa = models.CharField(max_length=10)
+    unidade_empresa = models.CharField(max_length=10)
+    status_operacional = models.CharField(max_length=10)
 
-
-class GarbanzoAssetType(GarbanzoModel):
-    desc_asset_type = models.CharField(max_length=100)
-    accepted_links = models.ManyToManyField(GarbanzoLinkType,)
-
-    def __str__(self):
-        return self.desc_asset_type
-
-
-class GarbanzoAssetItem(GarbanzoModel):
-    name_item = models.CharField(max_length=100)
-    serial_number = models.CharField(max_length=100)
-    tag_number = models.CharField(max_length=100)
-    internal_number = models.CharField(max_length=100)
-    type_asset = models.ForeignKey(GarbanzoAssetType, on_delete= models.DO_NOTHING)
-
-    def __str__(self):
-        return f'{self.name_item} - ({self.internal_number}) - ({self.type_asset})'
-
-
-class TesteId(models.Model):
-    id = models.CharField(max_length=10)
-    nome = models.CharField(max_length=10, primary_key=True)
-    history = HistoricalRecords()
-
-
-class TesteFkId(models.Model):
-    teste = models.ForeignKey(TesteId, on_delete=models.DO_NOTHING)
-    history = HistoricalRecords()
+    unique_together = (('linked_user', 'matricula_employee'),)

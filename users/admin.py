@@ -1,11 +1,10 @@
 from django.contrib import admin
 from simple_history.admin import SimpleHistoryAdmin
 
+from core.models import GarbanzoPerms
 # Register your models here.
-from .forms import GarbanzoUserChangeForm, GarbanzoUserCreationForm
-from .models import GarbanzoUser, GarbanzoPerms, GUserPerms, GarbanzoAssetType, GarbanzoAssetItem, GarbanzoLinkType, TesteId, TesteFkId
-
-from miniature_garbanzo.utils import functions
+from users.forms import GarbanzoUserChangeForm, GarbanzoUserCreationForm
+from users.models import GarbanzoUser, GUserPerms, Employee
 
 
 class CustomUserHistoryAdmin(SimpleHistoryAdmin):
@@ -18,12 +17,24 @@ class CustomUserHistoryAdmin(SimpleHistoryAdmin):
         'email',
     )
 
+
+class PermissionInline(admin.TabularInline):
+    model = GUserPerms
+
+
+class EmployeeLinked(admin.StackedInline):
+    model = Employee
+
 class CustomUserAdmin(CustomUserHistoryAdmin):
     """
     Classe para configurar o model para o Django Admin.
 
     Testes de uso do SimpleHistoryAdmin no lugar de UserAdmin
     """
+    inlines = [
+        EmployeeLinked,
+        PermissionInline
+    ]
     add_form = GarbanzoUserCreationForm
     form = GarbanzoUserChangeForm
     model = GarbanzoUser
@@ -48,23 +59,8 @@ class CustomUserAdmin(CustomUserHistoryAdmin):
 
 class CurtomGUserPermsAdmin(SimpleHistoryAdmin):
     list_display = ('__str__', 'id_guser', 'id_gperms', 'id', 'system_active')
-    list_filter = ('id_guser', 'id_gperms')
+    list_filter = ('id_guser', 'id_gperms__app_gperms')
 
 
-class CustomGarbanzoPermsAdmin(SimpleHistoryAdmin):
-    list_display = ('sys_name_gperms', 'desc_gperms', 'long_desc_gperms', 'id', 'system_active' )
-    list_filter = ('sys_name_gperms',)
-
-
-class CustomGarbanzoAssetAdmin(SimpleHistoryAdmin):
-    history_readonly_fields = ('id', 'name_item', 'serial_number', 'tag_number', 'internal_number', 'type_asset')
-
-
-admin.site.register(GarbanzoPerms, CustomGarbanzoPermsAdmin)
 admin.site.register(GUserPerms, CurtomGUserPermsAdmin)
 admin.site.register(GarbanzoUser, CustomUserAdmin)
-admin.site.register(GarbanzoAssetItem, CustomGarbanzoAssetAdmin)
-admin.site.register(GarbanzoLinkType, SimpleHistoryAdmin)
-admin.site.register(GarbanzoAssetType,SimpleHistoryAdmin)
-admin.site.register(TesteId,SimpleHistoryAdmin)
-admin.site.register(TesteFkId,SimpleHistoryAdmin)
