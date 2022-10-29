@@ -6,9 +6,9 @@ from django.contrib.auth.models import AbstractBaseUser
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
+# project imports
 from core.models import GarbanzoPerms
 from miniature_garbanzo.utils import functions
-# project imports
 from miniature_garbanzo.utils.abcmodels import GarbanzoModel, CustomPermissionMixin
 
 # local
@@ -55,7 +55,6 @@ class GarbanzoUser(GarbanzoModel, AbstractBaseUser, CustomPermissionMixin):
         if self._password is not None:
             password_validation.password_changed(self._password, self)
             self._password = None
-
 
 
 class GUserPerms(GarbanzoModel):
