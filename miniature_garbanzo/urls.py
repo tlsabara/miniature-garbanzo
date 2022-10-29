@@ -18,10 +18,11 @@ from django.urls import path, include
 
 import assets.url
 import core.url
+import users.url
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include(core.url)),
     path('assets/', include(assets.url)),
-    path('users/', include(core.url)),
+    path('users/', include(users.url)),
 ]

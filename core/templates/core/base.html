@@ -1,15 +1,34 @@
-<!DOCTYPE html>
+<!doctype html>
 {% load static %}
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <title>{% block page_name %} Garbanzo - Login {% endblock %}</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
-Base on CORE
-{% block main_block %}
-{% endblock %}
-{% block js_codes %}
-{% endblock %}
+
+<div class="wrapper d-flex align-items-stretch">
+    {%  include 'core/side-menu.html' %}
+
+    <!-- Page Content  -->
+    <div id="content" class="p-4 p-md-5">
+
+        {% include 'core/top-menu.html' %}
+
+        {% block main_content %}
+        {% endblock %}
+    </div>
+</div>
+
+<script src="{%  static 'js/jquery.min.js' %}"></script>
+<script src="{%  static 'js/popper.js' %}"></script>
+<script src="{%  static 'js/bootstrap.min.js' %}"></script>
+<script src="{%  static 'js/main.js' %}"></script>
 </body>
 </html>
