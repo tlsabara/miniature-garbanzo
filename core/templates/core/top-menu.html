@@ -25,19 +25,36 @@
                 {%  endif %}
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="nav navbar-nav ml-auto">
-                        <li class="nav-item active">
-                            <a class="nav-link" href="#">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">About</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Portfolio</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Contact</a>
-                        </li>
+                    {% if user.is_authenticated %}
+                        <ul class="nav navbar-nav ml-auto">
+                            {% comment %}
+
+                                    To pensando em fazer um menu dinamico.
+                                    um Dict com a com o display_name, href??, class_menu, decored_class
+
+                            {% endcomment %}
+
+                            <li class="nav-item active">
+                                <a class="nav-link" href="#">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Assets</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Usuários</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Colaboradores</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Acessos</a>
+                            </li>
+                    {% else %}
+                        <div class="nav navbar-nav ml-auto">
+                            <strong>Sistema de gerenciamento de usuários e ativos.</strong>
+                        </div>
+                    {% endif %}
+
                     </ul>
                 </div>
             </div>

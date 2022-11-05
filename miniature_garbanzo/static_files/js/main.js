@@ -14,6 +14,7 @@
 
 	$('#sidebarCollapse').on('click', function () {
       $('#sidebar').toggleClass('active');
+	  $('#side_title').toggleClass('active');
   });
 
 })(jQuery);
