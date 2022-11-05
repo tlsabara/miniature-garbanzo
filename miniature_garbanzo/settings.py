@@ -128,7 +128,7 @@ USE_TZ = True
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [
     f'{str(BASE_DIR)}/miniature_garbanzo/static_files/',
-    '/var/www/static/',
+
 ]
 
 # Default primary key field type
