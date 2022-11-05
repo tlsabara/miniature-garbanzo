@@ -50,14 +50,12 @@ def home(request):
             return redirect('home')
         else:
             context = {'error': 'Wrong credintials'}  # to display error?
-            return render(request, 'core/home.html', {
+            return render(request, 'core/login-register.html', {
                 'context': context,
                 'user': request.user,
                 'perms': permissao # to-do ta começando a cagar no projeto
 
             })
-
-
 
 
 def logoff_view(request):
