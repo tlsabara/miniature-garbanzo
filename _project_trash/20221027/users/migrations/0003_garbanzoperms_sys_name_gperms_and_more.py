@@ -6,20 +6,20 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('users', '0002_remove_garbanzoperms_id_guser_and_more'),
+        ("users", "0002_remove_garbanzoperms_id_guser_and_more"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='garbanzoperms',
-            name='sys_name_gperms',
+            model_name="garbanzoperms",
+            name="sys_name_gperms",
             field=models.CharField(default=None, max_length=100),
             preserve_default=False,
         ),
         migrations.AddField(
-            model_name='historicalgarbanzoperms',
-            name='sys_name_gperms',
-            field=models.CharField(default='!', max_length=100),
+            model_name="historicalgarbanzoperms",
+            name="sys_name_gperms",
+            field=models.CharField(default="!", max_length=100),
             preserve_default=False,
         ),
     ]

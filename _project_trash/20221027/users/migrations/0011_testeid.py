@@ -6,15 +6,18 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('users', '0010_garbanzoassettype_garbanzolinktype_and_more'),
+        ("users", "0010_garbanzoassettype_garbanzolinktype_and_more"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='TesteId',
+            name="TesteId",
             fields=[
-                ('id', models.CharField(max_length=10)),
-                ('nome', models.CharField(max_length=10, primary_key=True, serialize=False)),
+                ("id", models.CharField(max_length=10)),
+                (
+                    "nome",
+                    models.CharField(max_length=10, primary_key=True, serialize=False),
+                ),
             ],
         ),
     ]

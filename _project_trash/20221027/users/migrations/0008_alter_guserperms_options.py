@@ -6,12 +6,12 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('users', '0007_alter_guserperms_options'),
+        ("users", "0007_alter_guserperms_options"),
     ]
 
     operations = [
         migrations.AlterModelOptions(
-            name='guserperms',
-            options={'managed': False},
+            name="guserperms",
+            options={"managed": False},
         ),
     ]

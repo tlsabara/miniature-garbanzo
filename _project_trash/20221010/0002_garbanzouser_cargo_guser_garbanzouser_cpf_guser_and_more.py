@@ -8,42 +8,53 @@ import miniature_garbanzo.utils.validators
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('users', '0001_initial'),
+        ("users", "0001_initial"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='garbanzouser',
-            name='cargo_guser',
+            model_name="garbanzouser",
+            name="cargo_guser",
             field=models.CharField(blank=True, max_length=100, null=True),
         ),
         migrations.AddField(
-            model_name='garbanzouser',
-            name='cpf_guser',
-            field=models.CharField(default='11111111111', max_length=11, validators=[miniature_garbanzo.utils.validators.validacao_apenas_numeros, miniature_garbanzo.utils.validators.validacao_onze_digitos]),
+            model_name="garbanzouser",
+            name="cpf_guser",
+            field=models.CharField(
+                default="11111111111",
+                max_length=11,
+                validators=[
+                    miniature_garbanzo.utils.validators.validacao_apenas_numeros,
+                    miniature_garbanzo.utils.validators.validacao_onze_digitos,
+                ],
+            ),
             preserve_default=False,
         ),
         migrations.AddField(
-            model_name='garbanzouser',
-            name='dt_nasc_guser',
-            field=models.DateTimeField(default=datetime.datetime(2022, 10, 11, 2, 28, 25, 523101, tzinfo=datetime.timezone.utc)),
+            model_name="garbanzouser",
+            name="dt_nasc_guser",
+            field=models.DateTimeField(
+                default=datetime.datetime(
+                    2022, 10, 11, 2, 28, 25, 523101, tzinfo=datetime.timezone.utc
+                )
+            ),
             preserve_default=False,
         ),
         migrations.AddField(
-            model_name='garbanzouser',
-            name='nome_completo_guser',
-            field=models.CharField(default='Não Informado', max_length=255),
+            model_name="garbanzouser",
+            name="nome_completo_guser",
+            field=models.CharField(default="Não Informado", max_length=255),
             preserve_default=False,
         ),
         migrations.AddField(
-            model_name='garbanzouser',
-            name='num_doc_guser',
-            field=models.CharField(default='Não informado', max_length=30),
+            model_name="garbanzouser",
+            name="num_doc_guser",
+            field=models.CharField(default="Não informado", max_length=30),
             preserve_default=False,
         ),
         migrations.AddField(
-            model_name='garbanzouser',
-            name='setor_guser',
+            model_name="garbanzouser",
+            name="setor_guser",
             field=models.CharField(blank=True, max_length=100, null=True),
         ),
     ]

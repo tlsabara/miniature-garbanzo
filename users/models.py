@@ -19,7 +19,7 @@ from .validators import validador_cpf
 
 class GarbanzoUser(GarbanzoModel, AbstractBaseUser, CustomPermissionMixin):
     # Campos obrigatórios
-    email = models.EmailField(_('email address'), unique=True)
+    email = models.EmailField(_("email address"), unique=True)
     is_staff = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
 
@@ -28,10 +28,12 @@ class GarbanzoUser(GarbanzoModel, AbstractBaseUser, CustomPermissionMixin):
     dt_nasc_guser = models.DateField(blank=True, null=True)
     cpf_guser = models.CharField(max_length=11, validators=[validador_cpf])
     num_doc_guser = models.CharField(max_length=30, blank=True, null=True)
-    genero_guser = models.CharField(max_length=30, choices=AppUserChoices.Commons.GENERO, blank=True, null=True)
+    genero_guser = models.CharField(
+        max_length=30, choices=AppUserChoices.Commons.GENERO, blank=True, null=True
+    )
     observacoes_guser = models.TextField(max_length=1000, blank=True, null=True)
 
-    USERNAME_FIELD = 'email'
+    USERNAME_FIELD = "email"
     REQUIRED_FIELDS = []
 
     objects = CustomUserManager()
@@ -49,7 +51,9 @@ class GarbanzoUser(GarbanzoModel, AbstractBaseUser, CustomPermissionMixin):
         if self.password is None:
             senha_nova = functions.gerador_pwd(8)
             self.set_password(senha_nova)
-            self.observacoes_guser = f'{self.observacoes_guser}\n\n ---\n Nova Senha: {senha_nova}'
+            self.observacoes_guser = (
+                f"{self.observacoes_guser}\n\n ---\n Nova Senha: {senha_nova}"
+            )
 
         super().save(*args, **kwargs)
         if self._password is not None:
@@ -63,30 +67,37 @@ class GUserPerms(GarbanzoModel):
 
     class Meta:
         # managed = False
-        db_table = 'users_guserperms'
-        unique_together = (('id_gperms', 'id_guser'),)
+        db_table = "users_guserperms"
+        unique_together = (("id_gperms", "id_guser"),)
 
     def __str__(self):
-        return f'Permissao: {self.id_gperms} -> User: {self.id_guser}'
+        return f"Permissao: {self.id_gperms} -> User: {self.id_guser}"
 
 
 class Employee(GarbanzoModel):
-    linked_user = models.OneToOneField(GarbanzoUser, on_delete=models.DO_NOTHING, editable=False)
+    linked_user = models.OneToOneField(
+        GarbanzoUser, on_delete=models.DO_NOTHING, editable=False
+    )
 
     matricula_employee = models.CharField(max_length=10)
     rg_employee = models.CharField(max_length=10)
-    cpf_employee = models.CharField(max_length=10)
     full_name = models.CharField(max_length=10)
     dt_nasc = models.CharField(max_length=10)
     cargo = models.CharField(max_length=10)
     equipe = models.CharField(max_length=10)
     setor = models.CharField(max_length=10)
     gerente = models.CharField(max_length=10)
+    centro_de_custo = models.CharField(max_length=10)
     dt_admissao = models.CharField(max_length=10)
     tipo_contrato = models.CharField(max_length=10)
     satus_contrato = models.CharField(max_length=10)
     empresa = models.CharField(max_length=10)
     unidade_empresa = models.CharField(max_length=10)
     status_operacional = models.CharField(max_length=10)
+    op_vt = models.CharField(max_length=10)
+    op_vr = models.CharField(max_length=10)
+    tel_ctt_1 = models.CharField(max_length=10)
+    tel_ctt_2 = models.CharField(max_length=10)
+    email_pessoal = models.CharField(max_length=10)
 
-    unique_together = (('linked_user', 'matricula_employee'),)
+    unique_together = (("linked_user", "matricula_employee"),)

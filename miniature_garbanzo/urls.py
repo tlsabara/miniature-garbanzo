@@ -21,8 +21,8 @@ import core.url
 import users.url
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', include(core.url)),
-    path('assets/', include(assets.url)),
-    path('users/', include(users.url)),
+    path("admin/", admin.site.urls),
+    path("", include(core.url)),
+    path("assets/", include(assets.url)),
+    path("users/", include(users.url)),
 ]

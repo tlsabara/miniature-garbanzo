@@ -6,22 +6,22 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('users', '0004_alter_guserperms_options'),
+        ("users", "0004_alter_guserperms_options"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='garbanzoperms',
-            name='long_desc_gperms',
+            model_name="garbanzoperms",
+            name="long_desc_gperms",
             field=models.TextField(blank=True, max_length=1000, null=True),
         ),
         migrations.AddField(
-            model_name='historicalgarbanzoperms',
-            name='long_desc_gperms',
+            model_name="historicalgarbanzoperms",
+            name="long_desc_gperms",
             field=models.TextField(blank=True, max_length=1000, null=True),
         ),
         migrations.AlterModelTable(
-            name='guserperms',
-            table='users_guserperms',
+            name="guserperms",
+            table="users_guserperms",
         ),
     ]

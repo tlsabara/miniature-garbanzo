@@ -6,12 +6,12 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('users', '0006_garbanzoperms_system_active_and_more'),
+        ("users", "0006_garbanzoperms_system_active_and_more"),
     ]
 
     operations = [
         migrations.AlterModelOptions(
-            name='guserperms',
+            name="guserperms",
             options={},
         ),
     ]

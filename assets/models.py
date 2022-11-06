@@ -13,7 +13,9 @@ class GarbanzoLinkType(GarbanzoModel):
 
 class GarbanzoAssetClass(GarbanzoModel):
     desc_asset_class = models.CharField(max_length=100)
-    accepted_links = models.ManyToManyField(GarbanzoLinkType,)
+    accepted_links = models.ManyToManyField(
+        GarbanzoLinkType,
+    )
 
     def __str__(self):
         return self.desc_asset_class
@@ -24,8 +26,9 @@ class GarbanzoAssetType(GarbanzoModel):
     asset_type_class = models.ForeignKey(
         GarbanzoAssetClass,
         on_delete=models.DO_NOTHING,
-        related_name='asset_type_class',
-        null=True, blank=True
+        related_name="asset_type_class",
+        null=True,
+        blank=True,
     )
 
     def __str__(self):
@@ -37,15 +40,15 @@ class GarbanzoAssetItem(GarbanzoModel):
     asset_number = models.CharField(max_length=100)
     serial_number = models.CharField(max_length=100)
     tag_number = models.CharField(max_length=100)
-    type_asset = models.ForeignKey(GarbanzoAssetType, on_delete=models.DO_NOTHING,)
+    type_asset = models.ForeignKey(
+        GarbanzoAssetType,
+        on_delete=models.DO_NOTHING,
+    )
     custom_fields = models.ManyToManyField(
-        'core.ExtraField',
-        verbose_name=_('Extra fields'),
-        limit_choices_to={
-            'field_type__model': type_asset
-        }
+        "core.ExtraField",
+        verbose_name=_("Extra fields"),
+        limit_choices_to={"field_type__model": type_asset},
     )
 
     def __str__(self):
-        return f'({self.type_asset}) - {self.name_item} - ASSET:{self.asset_number} '
-
+        return f"({self.type_asset}) - {self.name_item} - ASSET:{self.asset_number} "

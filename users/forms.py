@@ -5,10 +5,9 @@ from .models import GarbanzoUser
 
 
 class GarbanzoUserCreationForm(UserCreationForm):
-
     class Meta:
         model = GarbanzoUser
-        fields = ('email',)
+        fields = ("email",)
 
 
 class GarbanzoUserChangeForm(UserChangeForm):
@@ -16,4 +15,4 @@ class GarbanzoUserChangeForm(UserChangeForm):
 
     class Meta:
         model = GarbanzoUser
-        fields = ('email',)
+        fields = ("email",)

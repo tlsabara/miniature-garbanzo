@@ -10,6 +10,7 @@ pytest-django = "*"
 pytest-cov = "*"
 pytest-xdist = "*"
 django-simple-history = "*"
+black = "*"
 
 [dev-packages]
 

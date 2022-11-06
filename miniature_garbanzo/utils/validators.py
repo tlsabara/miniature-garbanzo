@@ -12,7 +12,7 @@ def validacao_apenas_numeros(val: str):
     :return:
     """
     if not val.isdigit():
-        raise ValidationError('Este campo deve ter apenas numeros')
+        raise ValidationError("Este campo deve ter apenas numeros")
 
 
 def validacao_onze_digitos(val: str):
@@ -23,8 +23,8 @@ def validacao_onze_digitos(val: str):
     :return:
     """
     if not len(val) == 11:
-        raise ValidationError('Este campo deve ter exatamente 11 digitos.')
+        raise ValidationError("Este campo deve ter exatamente 11 digitos.")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     ...

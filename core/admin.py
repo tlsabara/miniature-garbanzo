@@ -6,9 +6,12 @@ from core.models import GarbanzoPerms, ExtraFieldType, ExtraField
 
 
 class CustomGarbanzoPermsAdmin(SimpleHistoryAdmin):
-    list_display = ('sys_name_gperms', 'app_gperms', 'desc_gperms', 'system_active')
-    list_filter = ('app_gperms',)
-    ordering = ('app_gperms', 'sys_name_gperms',)
+    list_display = ("sys_name_gperms", "app_gperms", "desc_gperms", "system_active")
+    list_filter = ("app_gperms",)
+    ordering = (
+        "app_gperms",
+        "sys_name_gperms",
+    )
 
 
 admin.site.register(GarbanzoPerms, CustomGarbanzoPermsAdmin)
