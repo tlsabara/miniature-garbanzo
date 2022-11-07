@@ -1,0 +1,14 @@
+[run]
+omit =
+    users/tests/*,
+    users/migrations/*,
+    assets/tests/*,
+    assets/migrations/*,
+    core/tests/*,
+    core/migrations/*,
+    miniature_garbanzo/tests/*,
+    __init__.py,
+    */__init__.py
+
+
+
