@@ -1,7 +1,5 @@
 from django.http import HttpResponseRedirect, HttpResponse, Http404
 from django.shortcuts import render, redirect
-from django.contrib.auth.decorators import login_required
-from django.template import loader
 from django.contrib.auth import authenticate, login, logout
 
 from core.froms import UserLoginForm
@@ -32,19 +30,16 @@ def home(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            # Redirect to a success page?
-            # return HttpResponseRedirect('/')
-            context = "tentando login"
             return redirect("my_home")
         else:
-            context = {"error": "Wrong credintials"}  # to display error?
+            context = {"error": "Wrong credintials"}
             return render(
                 request,
                 "core/login-register.html",
                 {
                     "context": context,
                     "user": request.user,
-                    "perms": [],  # to-do ta começando a cagar no projeto
+                    "perms": [],
                 },
             )
 

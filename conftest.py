@@ -1,3 +1,5 @@
+from datetime import datetime
+
 import pytest
 from django.contrib.auth import get_user_model
 from assets.models import GarbanzoLinkType, GarbanzoAssetClass, GarbanzoAssetType, GarbanzoAssetItem
@@ -16,6 +18,18 @@ def fxt_new_user_data() -> dict:
         "password": "user_pass543",
         "nome_completo_guser": "Usuário Teste",
     }
+
+
+@pytest.fixture
+def fxt_new_user_data_full_without_staff(fxt_new_user_data) -> dict:
+    """
+    Fixture para retornar os dados necessarios à criação de um novo Usuário
+    """
+    fxt_new_user_data["genero_guser"] = 'masculino'
+    fxt_new_user_data["num_doc_guser"] = "RG12123123"
+    fxt_new_user_data["is_staff"] = False
+    fxt_new_user_data["dt_nasc_guser"] = datetime(1990, 1, 1)
+    return fxt_new_user_data
 
 
 @pytest.fixture
@@ -138,6 +152,17 @@ def fxt_create_test_user(fxt_new_user_data) -> object:
     user_model = get_user_model()
     test_user = user_model.objects.create_user(**fxt_new_user_data)
     test_user.set_password(fxt_new_user_data.get("password"))
+    return test_user
+
+
+@pytest.fixture
+def fxt_create_test_user_full_data(fxt_new_user_data_full_without_staff) -> object:
+    """
+    Fixture para cirar um novo usuário
+    """
+    user_model = get_user_model()
+    test_user = user_model.objects.create_user(**fxt_new_user_data_full_without_staff)
+    test_user.set_password(fxt_new_user_data_full_without_staff.get("password"))
     return test_user
 
 

@@ -64,7 +64,7 @@ class ExtraField(models.Model):
         verbose_name=_("Asset Item"),
         related_name="extra_fields_instance",
         help_text=_(
-            "Only field types with fixed values can be chosen to add" " global values."
+            "Only field types with fixed values can be chosen to add global values."
         ),
         on_delete=models.DO_NOTHING,
     )
@@ -74,7 +74,7 @@ class ExtraField(models.Model):
         verbose_name=_("Field type"),
         related_name="extra_fields",
         help_text=_(
-            "Only field types with fixed values can be chosen to add" " global values."
+            "Only field types with fixed values can be chosen to add global values."
         ),
         on_delete=models.DO_NOTHING,
     )

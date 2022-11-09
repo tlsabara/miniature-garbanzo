@@ -66,7 +66,6 @@ class GUserPerms(GarbanzoModel):
     id_guser = models.ForeignKey(GarbanzoUser, on_delete=models.CASCADE)
 
     class Meta:
-        # managed = False
         db_table = "users_guserperms"
         unique_together = (("id_gperms", "id_guser"),)
 
