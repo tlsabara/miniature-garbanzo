@@ -1,6 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container-fluid">
-
                 <button type="button" id="sidebarCollapse" class="btn btn-primary">
                     <i class="fa fa-bars"></i>
                     <span class="sr-only">Toggle Menu</span>
@@ -38,16 +37,68 @@
                                 <a class="nav-link" href="#">Home</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Assets</a>
+                                   <div class="dropdown">
+                                        <div class="btn btn-outline-light" id="dropdownMenuOffset" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-offset="10,20">
+                                            <span class="text-black-50">Assets</span>
+                                        </div>
+                                        <div class="dropdown-menu dropdown-menu-lg-right" aria-labelledby="dropdownMenuOffset">
+                                            <a class="dropdown-item" href="#">Assets Items</a>
+                                            <a class="dropdown-item" href="#">Assets Class</a>
+                                            <a class="dropdown-item" href="#">Assets Links</a>
+                                            <a class="dropdown-item" href="#">Assets Types</a>
+                                        </div>
+                                    </div>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Usuários</a>
+                                   <div class="dropdown">
+                                        <div class="btn btn-outline-light" id="dropdownMenuOffset" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-offset="10,20">
+                                            <span class="text-black-50">Usuário</span>
+                                        </div>
+                                        <div class="dropdown-menu dropdown-menu-lg-right" aria-labelledby="dropdownMenuOffset">
+                                            <a class="dropdown-item" href="#">Editar Usuário</a>
+                                            <a class="dropdown-item" href="#">Novo Usuário</a>
+                                            <a class="dropdown-item" href="#">Desabilitar Usuário</a>
+                                            <a class="dropdown-item" href="#">Permissões de Usuários</a>
+                                        </div>
+                                    </div>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Colaboradores</a>
+                                   <div class="dropdown">
+                                        <div class="btn btn-outline-light" id="dropdownMenuOffset" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-offset="10,20">
+                                            <span class="text-black-50">Colaboradores</span>
+                                        </div>
+                                        <div class="dropdown-menu dropdown-menu-lg-right" aria-labelledby="dropdownMenuOffset">
+                                            <a class="dropdown-item" href="#">Cadastro de Colaborador</a>
+                                            <a class="dropdown-item" href="#">Editar Colaborador</a>
+                                            <a class="dropdown-item" href="#">Cadastro de Empresa</a>
+                                            <a class="dropdown-item" href="#"></a>
+                                        </div>
+                                    </div>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Acessos</a>
+                                   <div class="dropdown">
+                                        <div class="btn btn-outline-light" id="dropdownMenuOffset" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-offset="10,20">
+                                            <span class="text-black-50">Acessos</span>
+                                        </div>
+                                        <div class="dropdown-menu dropdown-menu-lg-right" aria-labelledby="dropdownMenuOffset">
+                                            <a class="dropdown-item" href="#">Cadastro de Sistema</a>
+                                            <a class="dropdown-item" href="#">Criar Acesso</a>
+                                            <a class="dropdown-item" href="#">Editar Acesso</a>
+                                            <a class="dropdown-item" href="#">Assets Types</a>
+                                        </div>
+                                    </div>
+                            </li>
+                            <li class="nav-item">
+                                   <div class="dropdown">
+                                        <div class="btn btn-outline-light" id="dropdownMenuOffset" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-offset="10,20">
+                                            <span class="text-black-50">Relatórios</span>
+                                        </div>
+                                        <div class="dropdown-menu dropdown-menu-lg-right" aria-labelledby="dropdownMenuOffset">
+                                            <a class="dropdown-item" href="#">Relatórios de Assets</a>
+                                            <a class="dropdown-item" href="#">Relatórios de Colaboradores</a>
+                                            <a class="dropdown-item" href="#">Relatórios de Acessos</a>
+                                        </div>
+                                    </div>
                             </li>
                     {% else %}
                         <div class="nav navbar-nav ml-auto">

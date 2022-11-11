@@ -1,4 +1,4 @@
-class AppCoreChoisces:
+class AppCoreChoices:
     class GarbanzoPerms:
         APPS = [
             ("CORE", "APP Core"),

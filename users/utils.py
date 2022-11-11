@@ -1,3 +1,6 @@
+
+
+# fixme mudar para um módulo igual ao da classe de assets
 class AppUserChoices:
     class Commons:
         GENERO = [

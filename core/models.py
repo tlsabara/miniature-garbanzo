@@ -3,7 +3,7 @@ from django.utils.translation import gettext_lazy as _
 
 from miniature_garbanzo.utils.abcmodels import GarbanzoModel
 
-from core.utils import AppCoreChoisces
+from .utils.core_choices import AppCoreChoices
 
 
 # Create your models here.
@@ -12,7 +12,7 @@ class GarbanzoPerms(GarbanzoModel):
     sys_name_gperms = models.CharField(max_length=100)
     long_desc_gperms = models.TextField(max_length=1000, null=True, blank=True)
     app_gperms = models.TextField(
-        max_length=50, choices=AppCoreChoisces.GarbanzoPerms.APPS, default="CORE"
+        max_length=50, choices=AppCoreChoices.GarbanzoPerms.APPS, default="CORE"
     )
 
     def __str__(self):

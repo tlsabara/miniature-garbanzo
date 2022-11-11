@@ -253,3 +253,23 @@ def fxt_create_extrafieldtype(
     extra_field_type.description = fxt_new_extra_field_type["description"]
     extra_field_type.save()
     return extra_field_type
+
+
+@pytest.fixture
+def fxt_dict_greradormenudict_with_no_perms() -> dict:
+    return {
+        "has_perms": False,
+        "perm_list": []
+    }
+
+
+@pytest.fixture
+def fxt_dict_greradormenudict_with_perms() -> dict:
+    return {
+        "has_perms": False,
+        "perm_list": [
+            {
+                ""
+            }
+        ]
+    }
